@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Markdown to HTML Test</title>
+    <meta charset="UTF-8">
+    <style>
+        html,
+        body {
+            font-family: sans-serif;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        Add the style "white-space: pre-line;" for the best results.
+    -->
+    <h1>Examples</h1>
+    <div style="background: rgb(230, 230, 230); border: 4px solid rgb(185, 185, 185); width: max-content; height: min-content;">
+    <md style="white-space: pre-line;">
+        ## Header 2
+        **BOLD TEXT**
+    </md>
+    </div>
+    <h1>Embed</h1>
+    <pre>
+        <code>
+&lt;script src="https://hitthemoney.github.io/markdown-to-html/js/api.min.js?parseOnload">&lt;/script>
+        </code>
+        </pre>
+    <md style="white-space: pre-line;">
+        ## Search Params:
+        `?parseOnload=keep` - Parses every md element but does not add the attribute that tells the parsing function the element was already parsed.
+        `?parseOnload=replace` - Parses every md element but but removes the md tag.
+        ### Keep in mind that I am still adding more markdown syntax
+    </md>
+    <!--
+        Any <md> element will be automatically parsed to HTML if you add the ?parseOnload search param.
+    -->
+    <script src="https://hitthemoney.github.io/markdown-to-html/js/api.min.js?parseOnload"></script>
+</body>
+
+</html>

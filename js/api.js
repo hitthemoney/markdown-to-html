@@ -6,8 +6,8 @@
         "__": ["b"],
         "*": ["i"],
         "_": ["i"],
-        "```": ["code"],
         "```": ["code", "pre"],
+        "`": ["code"],
         "~": ["del"]
     }, {
         "> ": "blockquote",
@@ -89,32 +89,33 @@
 
     window.parsePageMarkdown = (str) => {
         let mdElems = document.getElementsByTagName("md");
-        for (i = 0; i < mdElems.length; i++) {
+        for (num = 0; num < mdElems.length; num++) {
             if (str == "replace") {
-                if (mdElems[i].getAttribute("parsed") !== "true") {
-                    mdElems[i].outerHTML = mdElems[i].innerText.mdToHTML();
-                }
+                if (mdElems[num].getAttribute("parsed") !== "true") {
+                    mdElems[num].outerHTML = mdElems[num].innerText.mdToHTML();
+                };
             } else if (str == "keep") {
-                mdElems[i].innerHTML = mdElems[i].innerText.mdToHTML();
+                mdElems[num].innerHTML = mdElems[num].innerText.mdToHTML();
             } else {
-                mdElems[i].innerHTML = mdElems[i].innerText.mdToHTML();
-                mdElems[i].setAttribute("parsed", "true")
+                if (mdElems[num].getAttribute("parsed") !== "true") {
+                    mdElems[num].innerHTML = mdElems[num].innerText.mdToHTML();
+                    mdElems[num].setAttribute("parsed", "true")
+                };
             };
         };
     };
     let scripts = document.getElementsByTagName("script");
-    for (i = 0; i < scripts.length; i++) {
+    for (l = 0; l < scripts.length; l++) {
         try {
-            if (scripts[i].getAttribute("src") !== null) {
-                var url = new URL(scripts[i].getAttribute("src"));
+            if (scripts[l].getAttribute("src") !== null) {
+                var url = new URL(scripts[l].getAttribute("src"));
                 var nHUrl = url.hostname + url.pathname;
                 if (nHUrl == "hitthemoney.com/markdown-to-html/js/api.js" || "hitthemoney.com/markdown-to-html/js/api.min.js") {
-                    let src = scripts[i].getAttribute("src");
+                    let src = scripts[l].getAttribute("src");
                     let sp = new URL(src).searchParams;
                     if (sp.get("parseOnload") !== null) {
                         parsePageMarkdown(decodeURI(sp.get("parseOnload")));
-                    }
-                    break;
+                    };
                 };
             };
         } catch {};
